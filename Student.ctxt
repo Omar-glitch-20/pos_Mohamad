@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Student
+comment1.params=
+comment1.target=Student()
+comment10.params=
+comment10.target=java.lang.String\ toString()
+comment2.params=name\ kg\ cm\ gender
+comment2.target=Student(java.lang.String,\ float,\ int,\ char)
+comment3.params=name
+comment3.target=void\ setName(java.lang.String)
+comment4.params=kilogramm
+comment4.target=void\ setKg(float)
+comment5.params=cm
+comment5.target=void\ setCm(int)
+comment6.params=gender
+comment6.target=void\ setGender(char)
+comment7.params=
+comment7.target=float\ bmi()
+comment8.params=
+comment8.target=java.lang.String\ mannOderFrau()
+comment9.params=
+comment9.target=java.lang.String\ gewichtKategorie()
+numComments=11
