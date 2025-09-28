@@ -1,35 +1,44 @@
-package Student_HÜ;
+package StudentTest;
 
 public class Student
 {
-    private String name;
-    private float kg;
-    private int cm;
-    private char gender;
+    // Attribute (Eigenschaften eines Studenten)
+    private String name;   // Name des Studenten
+    private float kg;      // Gewicht in Kilogramm
+    private int cm;        // Körpergröße in Zentimetern
+    private char gender;   // Geschlecht: 'm' oder 'w'
 
+    // --------------------------------------------------------
     // Default-Konstruktor
+    // Wenn man keinen Wert angibt, werden Standardwerte gesetzt.
     public Student() {
-        this("Unbekannt", 70, 170, 'm');  // sinnvolle Standardwerte
+        this("Unbekannt", 70, 170, 'm');  
+        // ruft den anderen Konstruktor auf
+        // Name = "Unbekannt", Gewicht = 70kg, Größe = 170cm, Gender = 'm'
     }
 
+    // --------------------------------------------------------
     // Konstruktor mit Parametern
+    // Wird aufgerufen, wenn man beim Erstellen Werte übergibt
     public Student (String name, float kg, int cm, char gender) {
-        this.setName(name);
-        this.setKg(kg);
-        this.setCm(cm);
-        this.setGender(gender);
+        this.setName(name);   // ruft den Setter für Name auf
+        this.setKg(kg);       // ruft den Setter für Gewicht auf
+        this.setCm(cm);       // ruft den Setter für Größe auf
+        this.setGender(gender); // ruft den Setter für Geschlecht auf
     }
 
-    // setter für name
+    // --------------------------------------------------------
+    // Setter für Name mit Parameterprüfung
     public void setName (String name) {
         if (name == null || name.trim().isEmpty()) {
+            // wenn Name null oder leer ist → Fehler werfen
             throw new IllegalArgumentException("Name darf nicht leer sein!");
         } else {
-            this.name = name;
+            this.name = name; // gültiger Name → speichern
         }
     }
 
-    // setter für kg
+    // Setter für Gewicht (kg)
     public void setKg (float kilogramm) {
         if (kilogramm <= 0) {
             throw new IllegalArgumentException("Gewicht muss größer als 0 sein!");
@@ -38,7 +47,7 @@ public class Student
         }
     }
 
-    // setter für cm
+    // Setter für Körpergröße (cm)
     public void setCm (int cm) {
         if (cm <= 0) {
             throw new IllegalArgumentException("Größe muss größer als 0 sein!");
@@ -47,21 +56,24 @@ public class Student
         }
     }
 
-    // setter für gender
+    // Setter für Geschlecht (gender)
     public void setGender (char gender) {
         if (gender == 'm' || gender == 'M' || gender == 'w' || gender == 'W') {
-            this.gender = gender;
+            this.gender = gender; // nur m oder w erlaubt
         } else {
             throw new IllegalArgumentException("Gender muss 'm' oder 'w' sein!");
         }
     }
 
-    // calculate bmi
+    // --------------------------------------------------------
+    // BMI berechnen (kg / (m²))
     public float bmi () {
+        // cm → m umrechnen → durch 100 teilen
         return this.kg / ((this.cm / 100.0f) * (this.cm / 100.0f));
     }
 
-    // Geschlecht als String
+    // --------------------------------------------------------
+    // Geschlecht als String zurückgeben
     public String mannOderFrau () {
         if (this.gender == 'm' || this.gender == 'M') {
             return "männlich";
@@ -72,7 +84,8 @@ public class Student
         }
     }
 
-    // Gewichtskategorie nach BMI
+    // --------------------------------------------------------
+    // Gewichtskategorie ausgeben anhand des BMI
     public String gewichtKategorie() {
         float bmi = this.bmi();
         if (bmi < 18.5f) {
@@ -84,13 +97,15 @@ public class Student
         }
     }
 
-    // Ausgabe
+    // --------------------------------------------------------
+    // Ausgabe als String
     public String toString () {
         return "Name: " + this.name + " (" + this.mannOderFrau() + "), " 
             + this.kg + "kg, " + this.cm + "cm (" + this.gewichtKategorie() + ")";
     }
 
-    // printStudent-Methode (z. B. für eine Liste)
+    // --------------------------------------------------------
+    // Zusätzliche Methode: gibt die Infos direkt aus
     public void printStudent() {
         System.out.println(this.toString());
     }

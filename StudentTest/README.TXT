@@ -1,5 +1,3 @@
-package Student_HÜ;
-
 public class Student
 {
     private String name;
@@ -95,3 +93,4 @@ public class Student
         System.out.println(this.toString());
     }
 }
+
