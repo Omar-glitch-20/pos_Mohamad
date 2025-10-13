@@ -1,3 +1,5 @@
+package Auto_Mohamad;
+
 public class Person {
     private String name;
     private int gewicht;

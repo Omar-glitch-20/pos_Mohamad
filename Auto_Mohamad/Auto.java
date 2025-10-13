@@ -1,3 +1,5 @@
+package Auto_Mohamad;
+
 public class Auto {
     private String name;
     private int eigengewicht;
@@ -27,50 +29,68 @@ public class Auto {
 
     public void setName(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("Name darf nicht null sein!");
+            throw new IllegalArgumentException("Name darf nicht null sein");
         }
         this.name = name;
     }
 
     public void setEigengewicht(int eigengewicht) {
         if (eigengewicht < 600 || eigengewicht > 3000) {
-            throw new IllegalArgumentException("Eigengewicht muss zwischen 600 und 3000 liegen!");
+            throw new IllegalArgumentException("Eigengewicht muss zwischen 600 und 3000 liegen");
         }
         this.eigengewicht = eigengewicht;
     }
 
-    // ========== Personen einsteigen ==========
+   
+
+     // Personen einsteigen
     public void einsteigen(Person person) {
         if (person == null) {
             throw new IllegalArgumentException("Parameter person darf nicht null sein!");
         }
 
+        // Person darf nicht doppelt im Auto sein
+        if (person.equals(fahrer) || person.equals(beifahrer) || person.equals(rueckbank)) {
+            throw new IllegalStateException("Diese Person sitzt schon im Auto");
+        }
+
+        // freien Platz suchen
         if (fahrer == null) {
             fahrer = person;
-        } else if (beifahrer == null) {
-            beifahrer = person;
-        } else if (rueckbank == null) {
-            rueckbank = person;
-        } else {
-            throw new IllegalStateException("Das Auto ist voll!");
+            return;
         }
+        if (beifahrer == null) {
+            beifahrer = person;
+            return;
+        }
+        if (rueckbank == null) {
+            rueckbank = person;
+            return;
+        }
+
+        throw new IllegalStateException("Das Auto ist voll!");
     }
 
-    // ========== Personen aussteigen ==========
+    // Personen aussteigen 
     public void aussteigen(Person person) {
         if (person == null) {
-            throw new IllegalArgumentException("Parameter person darf nicht null sein!");
+            throw new IllegalArgumentException("Parameter person darf nicht null sein");
         }
 
         if (fahrer == person) {
             fahrer = null;
-        } else if (beifahrer == person) {
-            beifahrer = null;
-        } else if (rueckbank == person) {
-            rueckbank = null;
-        } else {
-            throw new IllegalStateException("Person ist nicht im Auto!");
+            return;
         }
+        if (beifahrer == person) {
+            beifahrer = null;
+            return;
+        }
+        if (rueckbank == person) {
+            rueckbank = null;
+            return;
+        }
+
+        throw new IllegalStateException("Person ist nicht im Auto!");
     }
 
     public void aussteigen(String name) {
@@ -80,14 +100,20 @@ public class Auto {
 
         if (fahrer != null && name.equals(fahrer.getName())) {
             fahrer = null;
-        } else if (beifahrer != null && name.equals(beifahrer.getName())) {
-            beifahrer = null;
-        } else if (rueckbank != null && name.equals(rueckbank.getName())) {
-            rueckbank = null;
-        } else {
-            throw new IllegalStateException("Person mit Name '" + name + "' nicht im Fahrzeug!");
+            return;
         }
+        if (beifahrer != null && name.equals(beifahrer.getName())) {
+            beifahrer = null;
+            return;
+        }
+        if (rueckbank != null && name.equals(rueckbank.getName())) {
+            rueckbank = null;
+            return;
+        }
+
+        throw new IllegalStateException("Person mit Name '" + name + "' ist nicht im Auto!");
     }
+
 
     // ========== Zusatzmethoden ==========
     public int gesamtGewicht() {
